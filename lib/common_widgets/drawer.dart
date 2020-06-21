@@ -1,8 +1,11 @@
 //Kailash K S
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:newitempage/common_widgets/contact_us.dart';
 import 'package:newitempage/services/auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
+import 'faq.dart';
 
 Widget CommonDrawer(BuildContext context){
   final AuthService _auth = AuthService();
@@ -42,13 +45,6 @@ Widget CommonDrawer(BuildContext context){
 
         ),
         Divider(),
-        ListTile(
-          title: Text(
-            "Appointments",
-            style: TextStyle(fontSize: 14),
-          ),
-          leading: Icon(Icons.notifications, color: Colors.black),
-        ),
         Divider(),
         ListTile(
           title: Text(
@@ -59,24 +55,28 @@ Widget CommonDrawer(BuildContext context){
         ),
         Divider(),
         ListTile(
-          title: Text(
-            "Settings",
-            style: TextStyle(fontSize: 14),
-          ),
-          leading: Icon(Icons.settings, color: Colors.black),
-        ),
-        Divider(),
-        ListTile(
             title: Text(
               "Help",
               style: TextStyle(fontSize: 14),
             ),
             leading: Icon(Icons.help, color: Colors.black),
             onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => Faqs(
+                      )));
             }
         ),
         Divider(),
         ListTile(
+          onTap: (){
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => ContactUs(
+                    )));
+          },
           title: Text(
             "Contact Us",
             style: TextStyle(fontSize: 14),

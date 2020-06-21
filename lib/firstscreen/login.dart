@@ -64,7 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     Container(
                         padding: EdgeInsets.fromLTRB(15.0, 110.0, 0.0, 0.0),
                         child: Center(
-                          child: Text('SoCure',
+                          child: Text('eShop',
                               style: TextStyle(
                                   fontSize: 80.0,
                                   fontWeight: FontWeight.bold,
@@ -195,7 +195,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Text(
-                    'New to SoCure?',
+                    'New to eShop?',
                     style: TextStyle(fontFamily: 'Montserrat'),
                   ),
                   SizedBox(width: 5.0),
