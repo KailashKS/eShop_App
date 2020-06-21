@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "1062457467075",
+    "firebase_url": "https://shop-work-2f412.firebaseio.com",
+    "project_id": "shop-work-2f412",
+    "storage_bucket": "shop-work-2f412.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1062457467075:android:1158fc8b4755134ba2c276",
+        "android_client_info": {
+          "package_name": "com.example.itemlist"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1062457467075-rr6cure8quao29e6emhe2a4tokin5tjf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZap-Lxj3r2XT8LacjbvIEfsXI_ODyIE0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1062457467075-rr6cure8quao29e6emhe2a4tokin5tjf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1062457467075:android:791a37695b3701b9a2c276",
+        "android_client_info": {
+          "package_name": "com.example.newitempage"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1062457467075-rr6cure8quao29e6emhe2a4tokin5tjf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZap-Lxj3r2XT8LacjbvIEfsXI_ODyIE0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1062457467075-rr6cure8quao29e6emhe2a4tokin5tjf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1062457467075:android:ccdc28494ba79ac8a2c276",
+        "android_client_info": {
+          "package_name": "os.project.shopwork"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1062457467075-rr6cure8quao29e6emhe2a4tokin5tjf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZap-Lxj3r2XT8LacjbvIEfsXI_ODyIE0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1062457467075-rr6cure8quao29e6emhe2a4tokin5tjf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
