@@ -1,8 +1,17 @@
 //Kailash K S
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:newitempage/services/auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 Widget CommonDrawer(BuildContext context){
+  final AuthService _auth = AuthService();
+  final FirebaseAuth _authenticate = FirebaseAuth.instance;
+//  getCurrentUser() async {
+//    final FirebaseUser user = await _authenticate.currentUser();
+//    uid = user.uid;
+//    return(uid);
+//  }
   return Drawer(
     child: new ListView(
       children: <Widget>[
@@ -79,7 +88,9 @@ Widget CommonDrawer(BuildContext context){
         ),
         Divider(),
         ListTile(
-          onTap: () {},
+          onTap: () async {
+            await _auth.signOut();
+          },
           title: Text(
             "Sign Out",
             style: TextStyle(fontSize: 14),

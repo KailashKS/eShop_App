@@ -70,8 +70,8 @@ drawer: draw,
                           ),
                           child: Image(
                             fit: BoxFit.contain,
-                            image: NetworkImage('gs://shop-work-2f412.appspot.com/images/Yhxm38TUQshQxx1QLGkAs7aGISb2/items/meme'),
-                            //image: AssetImage('assets/images/atta.png'),
+                            //image: NetworkImage('gs://shop-work-2f412.appspot.com/images/Yhxm38TUQshQxx1QLGkAs7aGISb2/items/meme'),
+                            image: AssetImage('assets/images/atta.png'),
                           ),
                         ),
                         Column(
