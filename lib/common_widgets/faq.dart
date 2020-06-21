@@ -31,31 +31,24 @@ class Entry {
 // The entire multilevel list displayed by this app.
 final List<Entry> data = <Entry>[
   Entry(
-    'Why Shop with Socure?',
+    'Why Shop with eShop?',
     <Entry>[
       Entry(
-          'Socure brings choice, clarity, and convenience to your entire Socure plan shopping experience.'),
+          'eShop brings choice, clarity, and convenience to your entire eShop plan shopping experience.'),
     ],
   ),
   Entry(
-    'How Do I Report Disability Fraud?',
+    'How Do I Report Fraud?',
     <Entry>[
       Entry(
-          'If you suspect any sort of disability fraud, you can report it to the Social Security Administration (SSA) via Internet, phone, or mail. According to the Centers for Medicare & Medicaid Services, fraud is any act of intentional deception in order to receive an unlawful benefit. Examples of disability fraud may include making false statements on claims or concealing employment in order to continue receiving disability benefits.'),
+          'You can contact us on the given email or phone numbers 24x7.'),
     ],
   ),
   Entry(
-    'Do we have subscription program',
+    'What are the payment options available?',
     <Entry>[
       Entry(
-          'Yes, we do! We want to offer this monthly renewal service so that everyone in the family can maximize the benefits we offer. Apart from Subscription we also provide One Time To know more about our subscription programme, feel free to contact'),
-    ],
-  ),
-  Entry(
-    'Are my credit/debit card details are secure?',
-    <Entry>[
-      Entry(
-          'Absolutely! Your card details will NOT be stored anywhere. Your card information goes through a completely secured and approved payment gateway for processing.'),
+          'Currently we only support Cash on Delivery(COD). Our team is working hard to implement Credit/Debit cards, NetBanking, UPI and other online payment options.'),
     ],
   ),
 

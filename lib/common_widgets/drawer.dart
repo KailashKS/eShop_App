@@ -6,6 +6,7 @@ import 'package:newitempage/services/auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'faq.dart';
+import 'items.dart';
 
 Widget CommonDrawer(BuildContext context){
   final AuthService _auth = AuthService();
@@ -19,8 +20,8 @@ Widget CommonDrawer(BuildContext context){
     child: new ListView(
       children: <Widget>[
         UserAccountsDrawerHeader(
-          accountName: Text("Mr. Profesorson"),
-          accountEmail: Text("Professorso@greendale.com"),
+          accountName: Text("${Contain.name}"),
+          accountEmail: Text("${Contain.email}"),
           // decoration: BoxDecoration(
           //     image: DecorationImage(
           //         image: AssetImage("images/bg.png"), fit: BoxFit.fill)),
@@ -44,7 +45,6 @@ Widget CommonDrawer(BuildContext context){
           },
 
         ),
-        Divider(),
         Divider(),
         ListTile(
           title: Text(

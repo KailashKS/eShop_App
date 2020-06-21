@@ -13,7 +13,6 @@ class _SignupPageState extends State<SignupPage> {
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
   String error = '';
-  String dropdownValue = "Choose";
   String _email;
   String _pass;
   bool loading = false;

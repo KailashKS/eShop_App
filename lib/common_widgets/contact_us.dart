@@ -21,16 +21,16 @@ class ContactUs extends StatelessWidget{
                 children: <Widget>[
                   ListTile(
                     leading: const Icon(Icons.person),
-                    title: Text("Team SoCure"),
+                    title: Text("Team eShop"),
                   ),
 
                   ListTile(
                     leading: const Icon(Icons.add_location),
-                    title:  Text("Address to the SoCure Office"),
+                    title:  Text("Address to the eShop Office"),
                   ),
                   ListTile(
                     leading: const Icon(Icons.email),
-                    title: Text("socure2020@gmail.com"),
+                    title: Text("eShop@gmail.com"),
                   ),
                 ]))
 

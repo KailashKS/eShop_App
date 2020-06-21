@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:newitempage/home/itemlist.dart';
+import 'package:newitempage/services/retrieve.dart';
 import 'package:provider/provider.dart';
 import 'package:newitempage/model/user.dart';
 import 'package:newitempage/firstscreen/authenticate.dart';
@@ -17,7 +18,7 @@ class Wrapper extends StatelessWidget {
     }
     else{
       MyHomePage.uid = user.uid;
-      return ItemPage();
+      return Retrieve();
     }
   }
 }

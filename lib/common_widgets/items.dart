@@ -11,6 +11,11 @@ class Contain extends StatefulWidget {
   final int length;
   final Widget wid;
   final Widget draw;
+  static String  name = '';
+  static String email = '';
+  static String address1 = '';
+  static String address2 = '';
+  static String uid;
 
   const Contain({Key key, this.list, this.length, this.wid, this.draw}) : super(key:key);
 
