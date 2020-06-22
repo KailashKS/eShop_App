@@ -51,14 +51,18 @@ class ItemLists extends StatelessWidget {
 class Change extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    shop.items = List();
+    shop.itemName = List();
     for (int i = 0; i < shop.tempitems.length; i++) {
-      shop.items
-          .add(shop.tempitems[i][Constant.itemName.toString()].toString());
+      shop.itemName.add(shop.tempitems[i][Constant.itemName.toString()].toString());
+      shop.items.add([
+        shop.tempitems[i][Constant.itemName.toString()].toString(),
+        shop.tempitems[i][Constant.itemPrice.toString()].toString()
+      ]);
     }
     return Contain(
-        list: shop.items,
-        length: shop.items.length,
+        itemNamelist: shop.itemName,
+        itemList: shop.items,
+        length: shop.itemName.length,
         wid: PreferredSize(
           preferredSize: Size.fromHeight(1),
           child: Container(),

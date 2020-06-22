@@ -2,12 +2,11 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:newitempage/common_widgets/appbar.dart';
-import 'package:newitempage/common_widgets/constants.dart';
-import 'package:newitempage/common_widgets/drawer.dart';
+import 'package:newitempage/common_widgets/itembuypage.dart';
 
 class Contain extends StatefulWidget {
-  final List list;
+  final List itemList;
+  final List itemNamelist;
   final int length;
   final Widget wid;
   final Widget draw;
@@ -17,18 +16,19 @@ class Contain extends StatefulWidget {
   static String address2 = '';
   static String uid;
 
-  const Contain({Key key, this.list, this.length, this.wid, this.draw}) : super(key:key);
+  const Contain({Key key, this.itemList,this.itemNamelist, this.length, this.wid, this.draw}) : super(key:key);
 
   @override
-  _ContainState createState() => _ContainState(this.list,this.length,this.wid,this.draw);
+  _ContainState createState() => _ContainState(this.itemList, this.itemNamelist,this.length,this.wid,this.draw);
 }
 
 class _ContainState extends State<Contain> {
-  final List list;
+  final List itemList;
+  final List itemNamelist;
   final int length;
   final Widget wid;
   final Widget draw;
-  _ContainState(this.list,this.length,this.wid,this.draw);
+  _ContainState(this.itemList, this.itemNamelist,this.length,this.wid,this.draw);
     final cities = [
   ];
   List filtered = [];
@@ -50,13 +50,23 @@ drawer: draw,
         ),
         child: Container(
           child: GridView.builder(
-              itemCount: list.length,
+              itemCount: itemNamelist.length,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 childAspectRatio: 2.7,
                 crossAxisCount: 1,
               ),
               itemBuilder: (BuildContext context, int index) {
                 return GestureDetector(
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => ItemBuyPage(itemList: itemList,length: itemList.length,itemNamelist: itemNamelist,)));
+                    },
+//                    onTap: () {
+//                      Navigator.push(
+//                        context,
+//                        MaterialPageRoute(builder: (context) => ItemPage()), ///Idhr ItemPage() ki jagah dalde aur list[index] pass kar
+//                      );
+//                    },
                   child: Container(
                     width: MediaQuery.of(context).size.width,
                     decoration: BoxDecoration(
@@ -97,7 +107,7 @@ drawer: draw,
                             //Atta - Whole Wheat
                             Padding(
                               padding: EdgeInsets.only(left: 15.0, top: 4.0),
-                              child: Text("${list[index]}",
+                              child: Text("${itemNamelist[index]}",
                                   style: TextStyle(
                                       color: Color.fromRGBO(26, 26, 26, 1),
                                       fontWeight: FontWeight.w400,
@@ -117,7 +127,7 @@ drawer: draw,
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: <Widget>[
                                   Text(
-                                    "MRP: $rupee 350.00",
+                                    "MRP: $rupee ${itemList[index][1]}",
                                     style: TextStyle(
                                         fontSize: 16.0, color: Colors.black),
                                   ),

@@ -33,8 +33,12 @@ class DataSearch extends SearchDelegate<String> {
 
   @override
   Widget buildResults(BuildContext context) {
-    final suggestionList =  shop.items.where((text) => text.toLowerCase().startsWith(query.toLowerCase())).toList();
-    return Contain(list: suggestionList,length: suggestionList.length,wid: PreferredSize(preferredSize: Size.fromHeight(1),child: Container(),),draw: PreferredSize(preferredSize: Size.fromHeight(1),child: Container(),));
+    final suggestionItems = List();
+    final suggestionList =  shop.itemName.where((text) => text.toLowerCase().startsWith(query.toLowerCase())).toList();
+    for(var i in suggestionList){
+      suggestionItems.add(shop.items[shop.itemName.indexOf(i)]);
+    }
+    return Contain(itemList: suggestionItems,itemNamelist: suggestionList,length: suggestionList.length,wid: PreferredSize(preferredSize: Size.fromHeight(1),child: Container(),),draw: PreferredSize(preferredSize: Size.fromHeight(1),child: Container(),));
 //    return Text(
 //      "Hello World", style: TextStyle(fontSize: 36.0,color: Colors.black),
 //    );
@@ -42,8 +46,12 @@ class DataSearch extends SearchDelegate<String> {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    final suggestionList =  query.isEmpty ? shop.items : shop.items.where((text) => text.toLowerCase().startsWith(query.toLowerCase())).toList();
-    return Contain(list: suggestionList,length: suggestionList.length,wid: PreferredSize(preferredSize: Size.fromHeight(1),child: Container(),),draw: PreferredSize(preferredSize: Size.fromHeight(1),child: Container(),),);
+    final suggestionItems = List();
+    final suggestionList =  query.isEmpty ? shop.itemName : shop.itemName.where((text) => text.toLowerCase().startsWith(query.toLowerCase())).toList();
+    for(var i in suggestionList){
+      suggestionItems.add(shop.items[shop.itemName.indexOf(i)]);
+    }
+    return Contain(itemList: suggestionItems,itemNamelist: suggestionList,length: suggestionList.length,wid: PreferredSize(preferredSize: Size.fromHeight(1),child: Container(),),draw: PreferredSize(preferredSize: Size.fromHeight(1),child: Container(),),);
     //return Contain(suggestionList: suggestionList,);
 //    return ListView.builder(
 //      itemBuilder: (context, index) => ListTile(
