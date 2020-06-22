@@ -2,25 +2,26 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:newitempage/common_widgets/appbar.dart';
-import 'package:newitempage/common_widgets/constants.dart';
-import 'package:newitempage/common_widgets/drawer.dart';
+import 'package:newitempage/common_widgets/itembuypage.dart';
+
 
 class Contain extends StatefulWidget {
   final List list;
   final int length;
   final Widget wid;
   final Widget draw;
-  static String  name = '';
+  static String name = '';
   static String email = '';
   static String address1 = '';
   static String address2 = '';
   static String uid;
 
-  const Contain({Key key, this.list, this.length, this.wid, this.draw}) : super(key:key);
+  const Contain({Key key, this.list, this.length, this.wid, this.draw})
+      : super(key: key);
 
   @override
-  _ContainState createState() => _ContainState(this.list,this.length,this.wid,this.draw);
+  _ContainState createState() =>
+      _ContainState(this.list, this.length, this.wid, this.draw);
 }
 
 class _ContainState extends State<Contain> {
@@ -28,16 +29,18 @@ class _ContainState extends State<Contain> {
   final int length;
   final Widget wid;
   final Widget draw;
-  _ContainState(this.list,this.length,this.wid,this.draw);
-    final cities = [
-  ];
+
+  _ContainState(this.list, this.length, this.wid, this.draw);
+
+  final cities = [];
   List filtered = [];
   String rupee = "\u20B9";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: wid,
-drawer: draw,
+      drawer: draw,
 //      appBar: PreferredSize(
 //        preferredSize: Size.fromHeight(1),
 //        child: Container(),
@@ -57,6 +60,10 @@ drawer: draw,
               ),
               itemBuilder: (BuildContext context, int index) {
                 return GestureDetector(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => ItemBuyPage()));
+                  },
                   child: Container(
                     width: MediaQuery.of(context).size.width,
                     decoration: BoxDecoration(
@@ -114,7 +121,8 @@ drawer: draw,
                             Padding(
                               padding: EdgeInsets.only(top: 4.0, left: 15.0),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: <Widget>[
                                   Text(
                                     "MRP: $rupee 350.00",
@@ -123,8 +131,9 @@ drawer: draw,
                                   ),
                                   Padding(
                                     padding: EdgeInsets.only(
-                                        right: MediaQuery.of(context).size.width *
-                                            0.1),
+                                        right:
+                                            MediaQuery.of(context).size.width *
+                                                0.1),
                                   ),
                                   FlatButton(
                                     child: Text(
@@ -134,7 +143,8 @@ drawer: draw,
                                     ),
                                     color: Colors.red,
                                     shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(5.0)),
+                                        borderRadius:
+                                            BorderRadius.circular(5.0)),
                                     onPressed: () {},
                                   )
                                 ],
