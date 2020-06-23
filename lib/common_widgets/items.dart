@@ -1,10 +1,15 @@
 //Kailash K S
-
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:newitempage/lists.dart' as shop;
+import 'package:newitempage/model/user.dart';
+import 'package:provider/provider.dart';
+import 'package:newitempage/services/database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:newitempage/common_widgets/itembuypage.dart';
 
 class Contain extends StatefulWidget {
+  static Map imageMap = {};
   final List itemList;
   final List itemNamelist;
   final int length;
@@ -14,7 +19,7 @@ class Contain extends StatefulWidget {
   static String email = '';
   static String address1 = '';
   static String address2 = '';
-  static String uid;
+  //static String uid;
 
   const Contain({Key key, this.itemList,this.itemNamelist, this.length, this.wid, this.draw}) : super(key:key);
 
@@ -28,16 +33,60 @@ class _ContainState extends State<Contain> {
   final int length;
   final Widget wid;
   final Widget draw;
+  //String name;
   _ContainState(this.itemList, this.itemNamelist,this.length,this.wid,this.draw);
-    final cities = [
-  ];
-  List filtered = [];
   String rupee = "\u20B9";
   @override
+
   Widget build(BuildContext context) {
+    User user = Provider.of(context);
+    Widget buildCard(
+        {BuildContext context,
+          String name,
+          User user}) {
+      //dynamic result = DatabaseService(uid: user.uid).downloadItemPhoto(name);
+      dynamic result = DatabaseService(uid: 'Yhxm38TUQshQxx1QLGkAs7aGISb2').downloadItemPhoto(name);
+
+      /// Looks up if the image is present in the cache, if not, download it from network.
+      Widget imageDownloader() {
+        Image image;
+        if (Contain.imageMap[name] == null) {
+          return FutureBuilder(
+              future: result,
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  if (snapshot.data[0]) {
+                    image = Image.network(
+                      snapshot.data[1],
+                      fit: BoxFit.cover,
+                    );
+                    Contain.imageMap.addAll({name: image});
+                    return image;
+                  } else
+                    return Image.asset(
+                      "lib/shared/addimage.png",
+                      fit: BoxFit.fill,
+                    );
+                } else if (snapshot.hasError) {
+                  return Text(snapshot.error.toString());
+                }
+                return CircularProgressIndicator();
+              });
+        } else {
+          shop.storeImage.add(Contain.imageMap[name]);
+          return Contain.imageMap[name];
+        }
+      }
+    }
+//    void getImg() async {
+//      var img = await buildCard(context: context,name: shop.itemName[0],user: user,).toString();
+//      print('var $img');
+//    }
+//    getImg();
+    //buildCard(context: context,name: shop.itemName[0],user: user,);
     return Scaffold(
       appBar: wid,
-drawer: draw,
+      drawer: draw,
 //      appBar: PreferredSize(
 //        preferredSize: Size.fromHeight(1),
 //        child: Container(),
@@ -57,9 +106,10 @@ drawer: draw,
               ),
               itemBuilder: (BuildContext context, int index) {
                 return GestureDetector(
+
                     onTap: () {
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => ItemBuyPage(itemList: itemList,length: itemList.length,itemNamelist: itemNamelist,)));
+                          MaterialPageRoute(builder: (context) => ItemBuyPage(itemList: itemList[index])));
                     },
 //                    onTap: () {
 //                      Navigator.push(
@@ -84,9 +134,10 @@ drawer: draw,
                             bottom: 2.0,
                           ),
                           child: Image(
-                            fit: BoxFit.contain,
-                            //image: NetworkImage('gs://shop-work-2f412.appspot.com/images/Yhxm38TUQshQxx1QLGkAs7aGISb2/items/meme'),
+
                             image: AssetImage('assets/images/atta.png'),
+                            fit: BoxFit.contain,
+
                           ),
                         ),
                         Column(
@@ -107,7 +158,7 @@ drawer: draw,
                             //Atta - Whole Wheat
                             Padding(
                               padding: EdgeInsets.only(left: 15.0, top: 4.0),
-                              child: Text("${itemNamelist[index]}",
+                              child: Text("${itemList[index][0]}",
                                   style: TextStyle(
                                       color: Color.fromRGBO(26, 26, 26, 1),
                                       fontWeight: FontWeight.w400,
@@ -159,59 +210,6 @@ drawer: draw,
               }),
         ),
       ),
-    );
-  }
-
-  void _showDialog() {
-    // flutter defined function
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        // return object of type Dialog
-        return AlertDialog(
-          title: Column(
-            children: <Widget>[
-              new Text(
-                "Available quantities for ",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    color: Colors.grey.shade500,
-                    fontSize: 15.0,
-                    fontWeight: FontWeight.w700),
-              ),
-              Padding(
-                padding: EdgeInsets.only(bottom: 3.0),
-              ),
-              new Text(
-                "Aashirvaad - Atta - Whole Wheat",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 17.0,
-                    fontWeight: FontWeight.w700),
-              )
-            ],
-          ),
-          content: Builder(
-            builder: (context) {
-              var height = 150;
-              return Container(
-                height: height.toDouble(),
-                width: MediaQuery.of(context).size.width,
-              );
-            },
-          ),
-          actions: <Widget>[
-            // usually buttons at the bottom of the dialog
-            new FlatButton(
-              child: new Text("Close"),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
     );
   }
 }

@@ -13,7 +13,7 @@ List itemPrice = List();
 List shopName = List();
 List companyName = List();
 List itemDes = List();
-List storeImage = List();
+dynamic storeImage = List();
 List tempitems = List();
 //List shops = [
 //  "Shop1",

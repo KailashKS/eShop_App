@@ -56,13 +56,14 @@ class Change extends StatelessWidget {
       shop.itemName.add(shop.tempitems[i][Constant.itemName.toString()].toString());
       shop.items.add([
         shop.tempitems[i][Constant.itemName.toString()].toString(),
-        shop.tempitems[i][Constant.itemPrice.toString()].toString()
+        shop.tempitems[i][Constant.itemPrice.toString()].toString(),
+        shop.tempitems[i]['UID'].toString()
       ]);
     }
     return Contain(
         itemNamelist: shop.itemName,
         itemList: shop.items,
-        length: shop.itemName.length,
+        length: shop.items.length,
         wid: PreferredSize(
           preferredSize: Size.fromHeight(1),
           child: Container(),

@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -6,22 +5,19 @@ import '../search.dart';
 
 class ItemBuyPage extends StatefulWidget {
   final List itemList;
-  final List itemNamelist;
-  final int length;
-  const ItemBuyPage({Key key, this.itemList, this.itemNamelist, this.length}) : super(key:key);
+  const ItemBuyPage({Key key, this.itemList}) : super(key:key);
   @override
   State<StatefulWidget> createState() {
-    return new ItemBuyPageState(this.itemList,this.itemNamelist, this.length);
+    return new ItemBuyPageState(this.itemList);
   }
 }
 
 class ItemBuyPageState extends State<ItemBuyPage> {
 //  int selected_qty = 0;
+  String rupee = "\u20B9";
   int no_of_units = 1;
   final List itemList;
-  final List itemNamelist;
-  final int length;
-  ItemBuyPageState(this.itemList,this.itemNamelist, this.length);
+  ItemBuyPageState(this.itemList);
   @override
   Widget build(BuildContext context) {
     _showModalBottomSheet(context) {
@@ -203,7 +199,7 @@ class ItemBuyPageState extends State<ItemBuyPage> {
                 height: 22,
                 alignment: Alignment.centerLeft,
                 child: new Text(
-                  "MRP: Rs 10", //${item_options[selected_qty]['price']}
+                  "$rupee ${itemList[1]}", //${item_options[selected_qty]['price']}
                   style:
                   new TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
                   textAlign: TextAlign.left,
@@ -393,4 +389,3 @@ class ItemBuyPageState extends State<ItemBuyPage> {
     );
   }
 }
-
