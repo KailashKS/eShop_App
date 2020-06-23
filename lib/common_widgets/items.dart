@@ -15,16 +15,24 @@ class Contain extends StatefulWidget {
   final int length;
   final Widget wid;
   final Widget draw;
-  static String  name = '';
+  static String name = '';
   static String email = '';
   static String address1 = '';
   static String address2 = '';
   //static String uid;
 
-  const Contain({Key key, this.itemList,this.itemNamelist, this.length, this.wid, this.draw}) : super(key:key);
+  const Contain(
+      {Key key,
+      this.itemList,
+      this.itemNamelist,
+      this.length,
+      this.wid,
+      this.draw})
+      : super(key: key);
 
   @override
-  _ContainState createState() => _ContainState(this.itemList, this.itemNamelist,this.length,this.wid,this.draw);
+  _ContainState createState() => _ContainState(
+      this.itemList, this.itemNamelist, this.length, this.wid, this.draw);
 }
 
 class _ContainState extends State<Contain> {
@@ -34,56 +42,45 @@ class _ContainState extends State<Contain> {
   final Widget wid;
   final Widget draw;
   //String name;
-  _ContainState(this.itemList, this.itemNamelist,this.length,this.wid,this.draw);
+  _ContainState(
+      this.itemList, this.itemNamelist, this.length, this.wid, this.draw);
   String rupee = "\u20B9";
-  @override
 
+  /// Made Changes here - ANIKET
+  Widget imageDownloader({String itemName, String uid}) {
+    Image image;
+    if (Contain.imageMap[itemName] == null) {
+      return FutureBuilder(
+          future: DatabaseService(uid: uid).downloadItemPhoto(itemName),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              if (snapshot.data[0]) {
+                image = Image.network(
+                  snapshot.data[1],
+                  fit: BoxFit.cover,
+                );
+                Contain.imageMap.addAll({itemName: image});
+                return image;
+              } else
+                return Image.asset(
+                  "lib/shared/addimage.png",
+                  fit: BoxFit.fill,
+                );
+            } else if (snapshot.hasError) {
+              return Text(snapshot.error.toString());
+            }
+            return CircularProgressIndicator();
+          });
+    } else {
+      shop.storeImage.add(Contain.imageMap[itemName]);
+      return Contain.imageMap[itemName];
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     User user = Provider.of(context);
-    Widget buildCard(
-        {BuildContext context,
-          String name,
-          User user}) {
-      //dynamic result = DatabaseService(uid: user.uid).downloadItemPhoto(name);
-      dynamic result = DatabaseService(uid: 'Yhxm38TUQshQxx1QLGkAs7aGISb2').downloadItemPhoto(name);
 
-      /// Looks up if the image is present in the cache, if not, download it from network.
-      Widget imageDownloader() {
-        Image image;
-        if (Contain.imageMap[name] == null) {
-          return FutureBuilder(
-              future: result,
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  if (snapshot.data[0]) {
-                    image = Image.network(
-                      snapshot.data[1],
-                      fit: BoxFit.cover,
-                    );
-                    Contain.imageMap.addAll({name: image});
-                    return image;
-                  } else
-                    return Image.asset(
-                      "lib/shared/addimage.png",
-                      fit: BoxFit.fill,
-                    );
-                } else if (snapshot.hasError) {
-                  return Text(snapshot.error.toString());
-                }
-                return CircularProgressIndicator();
-              });
-        } else {
-          shop.storeImage.add(Contain.imageMap[name]);
-          return Contain.imageMap[name];
-        }
-      }
-    }
-//    void getImg() async {
-//      var img = await buildCard(context: context,name: shop.itemName[0],user: user,).toString();
-//      print('var $img');
-//    }
-//    getImg();
-    //buildCard(context: context,name: shop.itemName[0],user: user,);
     return Scaffold(
       appBar: wid,
       drawer: draw,
@@ -106,11 +103,13 @@ class _ContainState extends State<Contain> {
               ),
               itemBuilder: (BuildContext context, int index) {
                 return GestureDetector(
-
-                    onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => ItemBuyPage(itemList: itemList[index])));
-                    },
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                ItemBuyPage(itemList: itemList[index])));
+                  },
 //                    onTap: () {
 //                      Navigator.push(
 //                        context,
@@ -133,12 +132,10 @@ class _ContainState extends State<Contain> {
                             left: 15.0,
                             bottom: 2.0,
                           ),
-                          child: Image(
 
-                            image: AssetImage('assets/images/atta.png'),
-                            fit: BoxFit.contain,
-
-                          ),
+                          /// Made Changes here - ANIKET
+                          child: imageDownloader(
+                              itemName: shop.itemName[index], uid: user.uid),
                         ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -147,7 +144,7 @@ class _ContainState extends State<Contain> {
                             Padding(
                               padding: EdgeInsets.only(top: 15.0, left: 15.0),
                               child: Text(
-                                "AASHIRVAAD",
+                                shop.itemName[index],
                                 style: TextStyle(
                                   color: Color.fromRGBO(143, 143, 143, 1),
                                   fontWeight: FontWeight.w700,
@@ -175,7 +172,8 @@ class _ContainState extends State<Contain> {
                             Padding(
                               padding: EdgeInsets.only(top: 4.0, left: 15.0),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: <Widget>[
                                   Text(
                                     "MRP: $rupee ${itemList[index][1]}",
@@ -184,8 +182,9 @@ class _ContainState extends State<Contain> {
                                   ),
                                   Padding(
                                     padding: EdgeInsets.only(
-                                        right: MediaQuery.of(context).size.width *
-                                            0.1),
+                                        right:
+                                            MediaQuery.of(context).size.width *
+                                                0.1),
                                   ),
                                   FlatButton(
                                     child: Text(
@@ -195,7 +194,8 @@ class _ContainState extends State<Contain> {
                                     ),
                                     color: Colors.red,
                                     shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(5.0)),
+                                        borderRadius:
+                                            BorderRadius.circular(5.0)),
                                     onPressed: () {},
                                   )
                                 ],

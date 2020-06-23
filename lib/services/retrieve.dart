@@ -4,6 +4,8 @@ import 'package:newitempage/firstscreen/login.dart';
 import 'package:newitempage/common_widgets/items.dart';
 import 'package:newitempage/home/itemlist.dart';
 import 'package:newitempage/loading.dart';
+import 'package:newitempage/model/user.dart';
+import 'package:provider/provider.dart';
 import 'auth.dart';
 
 class Retrieve extends StatelessWidget {
@@ -12,19 +14,24 @@ class Retrieve extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    User user = Provider.of(context);
     return Scaffold(
       body: StreamBuilder(
-        stream: Firestore.instance.collection('customer').document('${MyHomePage.uid}').snapshots(),
-        // ignore: missing_return
+        stream: Firestore.instance
+            .collection('customer')
+            .document(user.uid)
+            .snapshots(),
         builder: (context, snapshot) {
-          if(!snapshot.hasData){
+          if (!snapshot.hasData) {
             return Loading();
           }
-          var userDocument = snapshot.data;
-          Contain.name = userDocument['name'];
-          Contain.email = userDocument['email'];
-          Contain.address1 = userDocument['street'];
-          Contain.address2 = userDocument['main_address'];
+
+          ///TODO: FIX HERE
+          // var userDocument = snapshot.data;
+          // Contain.name = userDocument['name'];
+          // Contain.email = userDocument['email'];
+          // Contain.address1 = userDocument['street'];
+          // Contain.address2 = userDocument['main_address'];
 
           return ItemPage();
         },
