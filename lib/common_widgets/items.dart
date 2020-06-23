@@ -63,7 +63,7 @@ class _ContainState extends State<Contain> {
                 return image;
               } else
                 return Image.asset(
-                  "assets/images/atta.png",
+                  "lib/images/atta.png",
                   fit: BoxFit.fill,
                 );
             } else if (snapshot.hasError) {
@@ -72,7 +72,7 @@ class _ContainState extends State<Contain> {
             return CircularProgressIndicator();
           });
     } else {
-      //shop.storeImage.add(Contain.imageMap[itemName]);
+      shop.storeImage.add(Contain.imageMap[itemName]);
       return Contain.imageMap[itemName];
     }
   }
@@ -135,7 +135,7 @@ class _ContainState extends State<Contain> {
 
                           /// Made Changes here - ANIKET
                           child: imageDownloader(
-                              itemName: shop.itemName[index].toString(), uid: user.uid),
+                              itemName: shop.itemName[index], uid: user.uid),
                         ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
