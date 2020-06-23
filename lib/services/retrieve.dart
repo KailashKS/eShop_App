@@ -27,11 +27,11 @@ class Retrieve extends StatelessWidget {
           }
 
           ///TODO: FIX HERE
-          // var userDocument = snapshot.data;
-          // Contain.name = userDocument['name'];
-          // Contain.email = userDocument['email'];
-          // Contain.address1 = userDocument['street'];
-          // Contain.address2 = userDocument['main_address'];
+           var userDocument = snapshot.data;
+           Contain.name = userDocument['name'];
+           Contain.email = userDocument['email'];
+           Contain.address1 = userDocument['street'];
+           Contain.address2 = userDocument['main_address'];
 
           return ItemPage();
         },

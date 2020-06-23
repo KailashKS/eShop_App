@@ -22,12 +22,16 @@ Widget CommonDrawer(BuildContext context){
         UserAccountsDrawerHeader(
           accountName: Text("${Contain.name}"),
           accountEmail: Text("${Contain.email}"),
+          decoration: BoxDecoration(
+            color: Colors.green.shade700
+          ),
           // decoration: BoxDecoration(
           //     image: DecorationImage(
           //         image: AssetImage("images/bg.png"), fit: BoxFit.fill)),
           currentAccountPicture: GestureDetector(
-
             child: CircleAvatar(
+              backgroundImage: AssetImage('assets/images/account.png',),
+              backgroundColor: Colors.white,
               //backgroundImage: AssetImage("images/morty.png"),
             ),
           ),

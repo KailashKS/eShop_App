@@ -38,7 +38,8 @@ class DataSearch extends SearchDelegate<String> {
     for(var i in suggestionList){
       suggestionItems.add(shop.items[shop.itemName.indexOf(i)]);
     }
-    return Contain(itemList: suggestionItems,itemNamelist: suggestionList,length: suggestionList.length,wid: PreferredSize(preferredSize: Size.fromHeight(1),child: Container(),),draw: PreferredSize(preferredSize: Size.fromHeight(1),child: Container(),));
+    print(suggestionItems);
+    return Contain(itemList: suggestionItems,itemNamelist: suggestionItems,length: suggestionList.length,wid: PreferredSize(preferredSize: Size.fromHeight(1),child: Container(),),draw: PreferredSize(preferredSize: Size.fromHeight(1),child: Container(),));
 //    return Text(
 //      "Hello World", style: TextStyle(fontSize: 36.0,color: Colors.black),
 //    );
@@ -51,7 +52,7 @@ class DataSearch extends SearchDelegate<String> {
     for(var i in suggestionList){
       suggestionItems.add(shop.items[shop.itemName.indexOf(i)]);
     }
-    return Contain(itemList: suggestionItems,itemNamelist: suggestionList,length: suggestionList.length,wid: PreferredSize(preferredSize: Size.fromHeight(1),child: Container(),),draw: PreferredSize(preferredSize: Size.fromHeight(1),child: Container(),),);
+    return Contain(itemList: suggestionItems,itemNamelist: suggestionItems,length: suggestionList.length,wid: PreferredSize(preferredSize: Size.fromHeight(1),child: Container(),),draw: PreferredSize(preferredSize: Size.fromHeight(1),child: Container(),),);
     //return Contain(suggestionList: suggestionList,);
 //    return ListView.builder(
 //      itemBuilder: (context, index) => ListTile(

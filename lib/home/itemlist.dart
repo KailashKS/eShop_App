@@ -30,6 +30,9 @@ class _ItemPageState extends State<ItemPage> {
 class ItemLists extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    shop.items = List();
+    shop.itemName = List();
+    shop.tempitems = List();
     return StreamBuilder(
       stream: Firestore.instance.collection('items').snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -57,7 +60,8 @@ class Change extends StatelessWidget {
       shop.items.add([
         shop.tempitems[i][Constant.itemName.toString()].toString(),
         shop.tempitems[i][Constant.itemPrice.toString()].toString(),
-        shop.tempitems[i]['UID'].toString()
+        shop.tempitems[i]['UID'].toString(),
+        shop.tempitems[i][Constant.itemQty.toString()].toString()
       ]);
     }
     return Contain(

@@ -41,6 +41,7 @@ class _ContainState extends State<Contain> {
   final int length;
   final Widget wid;
   final Widget draw;
+  String string = " ";
   //String name;
   _ContainState(
       this.itemList, this.itemNamelist, this.length, this.wid, this.draw);
@@ -64,7 +65,7 @@ class _ContainState extends State<Contain> {
               } else
                 return Image.asset(
                   "lib/images/atta.png",
-                  fit: BoxFit.fill,
+                  fit: BoxFit.contain,
                 );
             } else if (snapshot.hasError) {
               return Text(snapshot.error.toString());
@@ -127,15 +128,17 @@ class _ContainState extends State<Contain> {
                       //crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Container(
+                          //height: ,
+                          width: MediaQuery.of(context).size.width*0.30,
                           margin: EdgeInsets.only(
                             top: 2.0,
-                            left: 15.0,
+                            left: 2.0,
                             bottom: 2.0,
                           ),
 
                           /// Made Changes here - ANIKET
                           child: imageDownloader(
-                              itemName: shop.itemName[index], uid: user.uid),
+                              itemName: itemList[index][0], uid: itemList[index][2]),
                         ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -143,8 +146,7 @@ class _ContainState extends State<Contain> {
                           children: <Widget>[
                             Padding(
                               padding: EdgeInsets.only(top: 15.0, left: 15.0),
-                              child: Text(
-                                shop.itemName[index],
+                              child: Text("${itemList[index][0]}",
                                 style: TextStyle(
                                   color: Color.fromRGBO(143, 143, 143, 1),
                                   fontWeight: FontWeight.w700,
@@ -163,7 +165,7 @@ class _ContainState extends State<Contain> {
                             ),
                             Padding(
                               padding: EdgeInsets.only(left: 15.0, top: 4.0),
-                              child: Text("Qty : 100",
+                              child: Text("Qty : ${itemList[index][3]}",
                                   style: TextStyle(
                                       color: Color.fromRGBO(26, 26, 26, 1),
                                       fontWeight: FontWeight.w400,
@@ -172,19 +174,22 @@ class _ContainState extends State<Contain> {
                             Padding(
                               padding: EdgeInsets.only(top: 4.0, left: 15.0),
                               child: Row(
+                                //crossAxisAlignment: CrossAxisAlignment.baseline,
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: <Widget>[
                                   Text(
-                                    "MRP: $rupee ${itemList[index][1]}",
+                                    "MRP: $rupee ${itemList[index][1]} ${itemList[index][1].length == 2 ? string*3 : string*2}",
                                     style: TextStyle(
                                         fontSize: 16.0, color: Colors.black),
                                   ),
+                                    //Spacer(),
                                   Padding(
                                     padding: EdgeInsets.only(
                                         right:
                                             MediaQuery.of(context).size.width *
-                                                0.1),
+                                                0.15
+                                    ),
                                   ),
                                   FlatButton(
                                     child: Text(
@@ -196,8 +201,9 @@ class _ContainState extends State<Contain> {
                                     shape: RoundedRectangleBorder(
                                         borderRadius:
                                             BorderRadius.circular(5.0)),
-                                    onPressed: () {},
-                                  )
+                                    onPressed: () {
+                                    },
+                                  ),
                                 ],
                               ),
                             )

@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:newitempage/common_widgets/items.dart';
+import 'package:newitempage/lists.dart' as shop;
+import 'package:newitempage/services/database.dart';
 
 import '../search.dart';
 
@@ -13,6 +16,37 @@ class ItemBuyPage extends StatefulWidget {
 }
 
 class ItemBuyPageState extends State<ItemBuyPage> {
+
+  Widget imageDownloader({String itemName, String uid}) {
+    Image image;
+    if (Contain.imageMap[itemName] == null) {
+      return FutureBuilder(
+          future: DatabaseService(uid: uid).downloadItemPhoto(itemName),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              if (snapshot.data[0]) {
+                image = Image.network(
+                  snapshot.data[1],
+                  fit: BoxFit.cover,
+                );
+                Contain.imageMap.addAll({itemName: image});
+                return image;
+              } else
+                return Image.asset(
+                  "lib/images/atta.png",
+                  fit: BoxFit.fill,
+                );
+            } else if (snapshot.hasError) {
+              return Text(snapshot.error.toString());
+            }
+            return CircularProgressIndicator();
+          });
+    } else {
+      shop.storeImage.add(Contain.imageMap[itemName]);
+      return Contain.imageMap[itemName];
+    }
+  }
+
 //  int selected_qty = 0;
   String rupee = "\u20B9";
   int no_of_units = 1;
@@ -188,7 +222,7 @@ class ItemBuyPageState extends State<ItemBuyPage> {
                 height: 28,
                 alignment: Alignment.centerLeft,
                 child: new Text(
-                  "Chocos", //, ${item_options[selected_qty]['weight']}
+                  "${itemList[0]}", //, ${item_options[selected_qty]['weight']}
                   style:
                   new TextStyle(fontSize: 25, fontWeight: FontWeight.w400),
                   textAlign: TextAlign.left,
@@ -223,9 +257,8 @@ class ItemBuyPageState extends State<ItemBuyPage> {
               new Container(
                   alignment: Alignment.center,
                   height: 350,
-                  child: new Image.asset(
-                    'assets/images/atta.png',
-                  )),
+                  child: imageDownloader(
+                      itemName: itemList[0].toString(), uid: itemList[2].toString())),
               new Padding(padding: const EdgeInsets.all(3)),
             ],
           ),
