@@ -63,7 +63,7 @@ class _ContainState extends State<Contain> {
                 return image;
               } else
                 return Image.asset(
-                  "lib/shared/addimage.png",
+                  "lib/images/atta.png",
                   fit: BoxFit.fill,
                 );
             } else if (snapshot.hasError) {
