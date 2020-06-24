@@ -211,7 +211,7 @@ class ItemBuyPageState extends State<ItemBuyPage> {
                     border: Border.all(width: 2, color: Colors.green),
                     borderRadius: BorderRadius.all(Radius.circular(3))),
                 child: new Text(
-                  "Kelloggs",
+                  "${shop.link[itemList[2]]}",
                   style:
                   new TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
                   textAlign: TextAlign.left,

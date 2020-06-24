@@ -157,7 +157,7 @@ class _ContainState extends State<Contain> {
                             //Atta - Whole Wheat
                             Padding(
                               padding: EdgeInsets.only(left: 15.0, top: 4.0),
-                              child: Text("${itemList[index][0]}",
+                              child: Text("Seller : ${shop.link[itemList[index][2]]}",
                                   style: TextStyle(
                                       color: Color.fromRGBO(26, 26, 26, 1),
                                       fontWeight: FontWeight.w400,

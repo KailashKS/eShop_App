@@ -11,10 +11,10 @@ List itemName = List();
 List itemQty = List();
 List itemPrice = List();
 List shopName = List();
-List companyName = List();
-List itemDes = List();
+List userids = List();
 dynamic storeImage = List();
 List tempitems = List();
+var link = Map();
 //List shops = [
 //  "Shop1",
 //  "Sahakari Bhandar",
