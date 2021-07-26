@@ -1,3 +1,3 @@
 # eShopping App
 
-A really barebones shopping app implementation.
+A basic shopping application made in Flutter which used Firebase at it's backend.
